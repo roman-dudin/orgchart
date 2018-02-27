@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Org chart
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <div>Chart for organization:</div>
+        <br>
+        <div>
+            <ul>
+                {% for boss, employees in chart.items() %}
+                    <li>{{boss}}
+                        <ul>
+                            {% for employee in employees %}
+                                <li>{{employee}}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{{ url_for('route_reset_org_chart') }}">Reset chart</a>
+        <br>
+        <a href="{{ url_for('route_fill_test_data') }}">Fill test data</a>
+    </div>
+{% endblock %}
